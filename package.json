@@ -1,0 +1,32 @@
+{
+  "name": "us-tariff-lookup-desktop",
+  "productName": "US Tariff Lookup",
+  "version": "1.0.0",
+  "description": "Offline US import-tariff desktop app: HTS search (EN/中文), stacked duties (MFN + Section 301 global/China + Section 232), MPF/HMF fees, landed cost. Windows / macOS / Linux.",
+  "main": "src/main.cjs",
+  "author": "InvoiceTariff <hello@invoicetariff.com> (https://invoicetariff.com)",
+  "license": "MIT",
+  "homepage": "https://invoicetariff.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/invoicetariff/us-tariff-lookup-desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/invoicetariff/us-tariff-lookup-desktop/issues"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --publish never",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:linux": "electron-builder --linux --publish never"
+  },
+  "dependencies": {
+    "us-tariff-lookup": "^0.1.0"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "^26.0.12",
+    "png2icons": "^2.0.1"
+  }
+}
