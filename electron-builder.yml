@@ -1,0 +1,35 @@
+appId: com.invoicetariff.us-tariff-lookup
+productName: US Tariff Lookup
+copyright: Copyright © 2026 InvoiceTariff
+directories:
+  output: release
+  buildResources: build
+files:
+  - src/**/*
+  - package.json
+  - "!**/*.map"
+asarUnpack:
+  - node_modules/us-tariff-lookup/**
+mac:
+  category: public.app-category.business
+  identity: null
+  darkModeSupport: true
+  target:
+    - target: dmg
+      arch: [arm64, x64]
+  artifactName: US-Tariff-Lookup-${version}-${arch}.${ext}
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  artifactName: US-Tariff-Lookup-Setup-${version}.${ext}
+linux:
+  category: Office
+  maintainer: InvoiceTariff <hello@invoicetariff.com>
+  target:
+    - target: AppImage
+      arch: [x64]
+  artifactName: US-Tariff-Lookup-${version}-${arch}.${ext}

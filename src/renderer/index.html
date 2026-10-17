@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; script-src 'self'" />
+    <title>US Tariff Lookup</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="icon.png" alt="" width="28" height="28" />
+        <div>
+          <h1>US Tariff Lookup</h1>
+          <p class="tagline" data-i18n="tagline"></p>
+        </div>
+      </div>
+      <div class="topmeta">
+        <span class="chip" id="chip-version"></span>
+        <span class="chip chip-soft" id="chip-ruleset"></span>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" id="lang-en">EN</button>
+          <button type="button" id="lang-zh">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="side">
+        <div class="searchwrap">
+          <input id="q" type="search" autocomplete="off" spellcheck="false" />
+          <p class="hint" data-i18n="searchHint"></p>
+        </div>
+        <ul class="results" id="results"></ul>
+      </aside>
+
+      <section class="content">
+        <div class="empty" id="empty">
+          <img src="icon.png" alt="" width="64" height="64" />
+          <h2 data-i18n="emptyTitle"></h2>
+          <p data-i18n="emptyBody"></p>
+          <div class="badges">
+            <span class="badge" data-i18n="badgeOffline"></span>
+            <span class="badge" data-i18n="badgeStacked"></span>
+            <span class="badge" data-i18n="badgeLicense"></span>
+          </div>
+          <div class="samples">
+            <p class="samples-label" data-i18n="tryThese"></p>
+            <div class="sample-row">
+              <button type="button" class="sample" data-sample="61091000">6109.10.00 <span data-i18n="sampleTshirts"></span></button>
+              <button type="button" class="sample" data-sample="84713001">8471.30.01 <span data-i18n="sampleLaptops"></span></button>
+              <button type="button" class="sample" data-sample-zh="保温杯" data-i18n="sampleThermos"></button>
+            </div>
+          </div>
+          <div class="quicklinks">
+            <p class="samples-label" data-i18n="quickLinks"></p>
+            <div class="ql-grid" id="ql-grid"></div>
+          </div>
+        </div>
+
+        <div class="detail hidden" id="detail">
+          <div class="code-head">
+            <div class="code-toprow">
+              <div class="code-id">
+                <span class="code" id="code-num"></span>
+                <span class="chip chip-warn hidden" id="code-sample" data-i18n="sampleFlag"></span>
+              </div>
+              <button type="button" id="back-home" class="back-home" data-i18n="backHome"></button>
+            </div>
+            <p class="code-desc" id="code-desc"></p>
+            <p class="code-desc-zh" id="code-desc-zh"></p>
+          </div>
+
+          <form id="calcform" autocomplete="off">
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="fOrigin"></span>
+                <select id="f-origin"></select>
+              </label>
+              <label class="field">
+                <span data-i18n="fMode"></span>
+                <select id="f-mode">
+                  <option value="sea"></option>
+                  <option value="air"></option>
+                  <option value="express"></option>
+                  <option value="postal"></option>
+                </select>
+              </label>
+            </div>
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="fValue"></span>
+                <input id="f-value" type="number" min="0.01" step="0.01" required />
+              </label>
+              <label class="field">
+                <span data-i18n="fUnits"></span>
+                <input id="f-units" type="number" min="1" step="1" required />
+              </label>
+              <label class="field">
+                <span data-i18n="fDate"></span>
+                <input id="f-date" type="date" required />
+              </label>
+            </div>
+            <div class="actions">
+              <button type="submit" class="primary" id="calc-btn" data-i18n="fCalc"></button>
+            </div>
+          </form>
+
+          <div class="error hidden" id="calc-error"></div>
+
+          <div class="result hidden" id="calc-result">
+            <div class="stats">
+              <div class="stat">
+                <span class="stat-label" data-i18n="rTotal"></span>
+                <span class="stat-value" id="r-total"></span>
+              </div>
+              <div class="stat">
+                <span class="stat-label" data-i18n="rRate"></span>
+                <span class="stat-value" id="r-rate"></span>
+              </div>
+              <div class="stat">
+                <span class="stat-label" data-i18n="rLanded"></span>
+                <span class="stat-value" id="r-landed"></span>
+              </div>
+              <div class="stat">
+                <span class="stat-label" data-i18n="rPerUnit"></span>
+                <span class="stat-value" id="r-perunit"></span>
+              </div>
+            </div>
+            <h3 data-i18n="rLayers"></h3>
+            <div class="tblwrap">
+              <table class="layers" id="r-layers">
+                <thead>
+                  <tr>
+                    <th data-i18n="thLayer"></th>
+                    <th data-i18n="thRate"></th>
+                    <th class="num" data-i18n="thAmount"></th>
+                    <th data-i18n="thBasis"></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <h3 data-i18n="rFees"></h3>
+            <div class="tblwrap">
+              <table class="layers fees" id="r-fees">
+                <thead>
+                  <tr>
+                    <th data-i18n="thFee"></th>
+                    <th class="num" data-i18n="thAmount"></th>
+                    <th data-i18n="thBasis"></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="warnings hidden" id="r-warnings"></div>
+            <p class="disclaimer" data-i18n="disclaimer"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="statusbar">
+      <span class="offline" data-i18n="offlineBadge"></span>
+      <span class="links">
+        <a href="https://invoicetariff.com/tariff-calculator" target="_blank" rel="noopener noreferrer" data-i18n="webCalc"></a>
+        <a href="https://github.com/invoicetariff/us-tariff-lookup-desktop" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.npmjs.com/package/us-tariff-lookup" target="_blank" rel="noopener noreferrer">npm</a>
+      </span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

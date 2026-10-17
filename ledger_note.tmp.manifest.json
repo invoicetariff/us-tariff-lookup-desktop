@@ -1,0 +1,38 @@
+{
+  "manifest_version": "v1",
+  "format": "ndjson",
+  "base_token": "SL3Vbu3rxaOL0hsdygTcYib3nEe",
+  "table_id": "tblra54tbvMzlP2t",
+  "rev": 73,
+  "timezone": "Asia/Shanghai",
+  "query_context": {
+    "record_scope": "selected_record_ids",
+    "requested_record_count": 1
+  },
+  "records_count": 1,
+  "page_count": 1,
+  "has_more": false,
+  "record_file": "/Users/dragondean/projects/invoice-tariff-tool/desktop-app/ledger_note.tmp.ndjson",
+  "record_file_size_bytes": 1884,
+  "manifest_file": "/Users/dragondean/projects/invoice-tariff-tool/desktop-app/ledger_note.tmp.manifest.json",
+  "columns": {
+    "record_id": {
+      "physical_type": "string",
+      "stats": {
+        "max_length": 16
+      },
+      "example": "reczz28NYLxPhCkm"
+    },
+    "备注": {
+      "field_id": "fldFiFYWaz",
+      "field_type": "text",
+      "physical_type": "string|null",
+      "stats": {
+        "null_count": 0,
+        "max_length": 1109
+      },
+      "example": "【2026-10-15 建档】Edge Add-ons 开发者用途。① 注册过程：edge@（品牌域转发）与 nova@ 直收均被判定「静默丢信」——实际 nova@ INBOX 有信（accountprotection.microsoft.com 发件）",
+      "example_truncated": true
+    }
+  }
+}

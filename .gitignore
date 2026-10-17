@@ -1,0 +1,8 @@
+node_modules/
+release/
+out/
+*.log
+.DS_Store
+test/*.png
+build/icon.iconset/
+build/icon-1024.png
